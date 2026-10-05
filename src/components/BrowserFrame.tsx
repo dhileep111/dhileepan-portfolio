@@ -1,7 +1,7 @@
 import type { Site } from "@/content/projects";
 import { assetUrl } from "@/lib/assets";
 
-/** A website screenshot inside a minimal browser frame. Image is 1600×1000 WebP. */
+/** A website screenshot inside a minimal browser frame. Image is a 1600px-wide WebP. */
 export function BrowserFrame({ site, priority = false }: { site: Site; priority?: boolean }) {
   const host = new URL(site.url).host.replace(/^www\./, "");
   return (
@@ -18,8 +18,8 @@ export function BrowserFrame({ site, priority = false }: { site: Site; priority?
       <img
         src={assetUrl(site.image)}
         alt={site.alt}
-        width={1600}
-        height={1000}
+        width={site.width ?? 1600}
+        height={site.height ?? 1000}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
         className="block h-auto w-full"

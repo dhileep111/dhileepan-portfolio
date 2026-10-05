@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Project data. RULES:
  *  - Only add `metrics` when you have verified numbers (reports, exports).
  *  - Only add `evidence` for real screenshots placed in /public/projects/<slug>/.
@@ -21,6 +21,8 @@ export type Site = {
   label: string;
   url: string;
   image: string; // /projects/<slug>/<name>.webp (made by scripts/process-screenshots.py)
+  width?: number; // image size printed by the script (default 1600Ã—1000)
+  height?: number;
   alt: string;
 };
 
@@ -87,9 +89,9 @@ export const projects: Project[] = [
     //   period: "May 2026 Campaign",
     //   note: "Based on campaign reporting data.",
     //   items: [
-    //     { value: "₹19.9K", label: "Ad Spend" },
-    //     { value: "₹65K", label: "Revenue" },
-    //     { value: "3.26×", label: "ROAS" },
+    //     { value: "â‚¹19.9K", label: "Ad Spend" },
+    //     { value: "â‚¹65K", label: "Revenue" },
+    //     { value: "3.26Ã—", label: "ROAS" },
     //     { value: "27", label: "Enrollments" },
     //   ],
     // },
