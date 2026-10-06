@@ -17,14 +17,16 @@ export const site = {
     "I help businesses grow through SEO, paid advertising, analytics and AI-powered marketing systems. Independent, based in Tamil Nadu, India, working with businesses remotely.",
   location: { region: "Tamil Nadu", country: "India", remote: true },
   contact: {
-    // PLACEHOLDERS: not provided yet. Empty values are hidden everywhere on the site.
-    email: "", // e.g. "name@yourdomain.com"
-    whatsapp: "", // digits only with country code, e.g. "91XXXXXXXXXX"
-    linkedin: "", // full profile URL
+    // Empty values are hidden everywhere on the site.
+    email: "dhileepanudayakumar@gmail.com",
+    whatsapp: "916379026089", // India (+91), digits only
+    linkedin: "https://www.linkedin.com/in/dhileepanudhayakumar/",
     github: "", // optional, full profile URL
   },
   /** Optional endpoint for the contact form (see .env.example). */
-  formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT ?? "",
+  // Formspree endpoint (public by design, it is visible in any form on the web).
+  // NEXT_PUBLIC_FORM_ENDPOINT overrides it if set.
+  formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT || "https://formspree.io/f/mdeakkpw",
   credibility: ["SEO", "Google Ads", "Meta Ads", "Analytics", "AI Automation"],
 } as const;
 

@@ -13,10 +13,11 @@ if (!url) errors.push("NEXT_PUBLIC_SITE_URL is not set (e.g. https://yourdomain.
 else if (!/^https:\/\//.test(url) || /localhost|127\.0\.0\.1|example\.com/.test(url))
   errors.push(`NEXT_PUBLIC_SITE_URL must be your real https URL, got "${url}".`);
 
-if (!process.env.NEXT_PUBLIC_FORM_ENDPOINT)
+const siteSrc = readFileSync("src/content/site.ts", "utf8");
+if (!process.env.NEXT_PUBLIC_FORM_ENDPOINT && !/formEndpoint:.*"https:\/\//.test(siteSrc))
   warnings.push("NEXT_PUBLIC_FORM_ENDPOINT is not set: the contact form will fall back to the visitor's email app (needs contact.email) or show 'not connected'.");
 
-const site = readFileSync("src/content/site.ts", "utf8");
+const site = siteSrc;
 for (const key of ["email", "whatsapp", "linkedin"])
   if (new RegExp(`${key}:\s*""`).test(site)) warnings.push(`contact.${key} is empty in src/content/site.ts (hidden on the site).`);
 
