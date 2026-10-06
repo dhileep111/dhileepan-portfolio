@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const pages = ["/", "/services", "/work", "/about", "/process", "/contact"];
+  const pages = ["/", "/services", "/work", "/about", "/process", "/wordpress-seo", "/contact"];
   return [
     ...pages.map((p) => ({
       url: absoluteUrl(p),

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui";
 import { ServiceCard } from "@/components/ServiceCard";
@@ -48,6 +49,16 @@ export default function ServicesPage() {
             </Reveal>
           ))}
         </div>
+      </Section>
+      <Section>
+        <p className="eyebrow">Specialist page</p>
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
+          Running a WordPress site? See how I handle{" "}
+          <Link href="/wordpress-seo" className="text-ink underline underline-offset-4">
+            WordPress SEO &amp; tracking
+          </Link>
+          .
+        </p>
       </Section>
       <CtaBlock />
     </>

@@ -10,6 +10,7 @@ const helpOptions = [
   "Analytics & Tracking",
   "Website / Landing Page",
   "AI & Automation",
+  "Free site & tracking review",
   "Not sure yet",
 ];
 
@@ -35,7 +36,11 @@ export function ContactForm() {
   // Submit stays disabled until hydrated so a native GET submit can never put
   // personal details into the URL.
   const [ready, setReady] = useState(false);
-  useEffect(() => setReady(true), []);
+  const [need, setNeed] = useState("");
+  useEffect(() => {
+    setReady(true);
+    if (window.location.hash === "#audit") setNeed("Free site & tracking review");
+  }, []);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -119,7 +124,7 @@ export function ContactForm() {
         </label>
         <label className="block text-sm font-medium">
           What do you need help with?
-          <select name="need" required defaultValue="" className={field}>
+          <select name="need" required value={need} onChange={(e) => setNeed(e.target.value)} className={field}>
             <option value="" disabled>
               Select one
             </option>

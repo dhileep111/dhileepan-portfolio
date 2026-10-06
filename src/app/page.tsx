@@ -7,6 +7,8 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { Tools } from "@/components/Tools";
 import { CtaBlock } from "@/components/CtaBlock";
+import { AuditOffer } from "@/components/AuditOffer";
+import { FaqSection } from "@/components/FaqSection";
 import { Reveal } from "@/components/Reveal";
 import { services } from "@/content/services";
 import { projects } from "@/content/projects";
@@ -97,13 +99,22 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section tone="alt">
+      <AuditOffer />
+
+      <Section>
         <SectionHeading
           eyebrow="Tools & Platforms"
           title="The tools I work in day to day."
         />
         <div className="mt-14">
           <Tools />
+        </div>
+      </Section>
+
+      <Section tone="alt">
+        <SectionHeading eyebrow="FAQ" title="Questions people ask before we start." />
+        <div className="mt-14 max-w-3xl">
+          <FaqSection schema />
         </div>
       </Section>
 

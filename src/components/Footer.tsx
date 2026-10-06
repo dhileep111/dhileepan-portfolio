@@ -29,6 +29,11 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link prefetch={false} href="/wordpress-seo" className="text-muted hover:text-ink">
+                WordPress SEO &amp; tracking
+              </Link>
+            </li>
           </ul>
         </nav>
         <div>
