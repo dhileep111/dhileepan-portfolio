@@ -48,7 +48,7 @@ export default function HomePage() {
               </Link>
             </p>
           </div>
-          <Illustration name="analytics-setup" className="mx-auto w-full max-w-lg lg:max-w-none" />
+          <Illustration name="analytics" className="mx-auto w-full max-w-lg lg:max-w-none" />
         </div>
       </Section>
 

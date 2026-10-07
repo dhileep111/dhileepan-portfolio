@@ -5,7 +5,7 @@ import { assetUrl } from "@/lib/assets";
  * attribution). Recoloured to the site's teal. They are decorative, so alt text is empty.
  */
 const art = {
-  "analytics-setup": { w: 800, h: 770 },
+  analytics: { w: 762, h: 690 },
   "marketing-analysis": { w: 960, h: 570 },
   "search-engines": { w: 935, h: 571 },
   "idea-to-plan": { w: 960, h: 424 },
