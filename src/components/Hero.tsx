@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { site } from "@/content/site";
-import { assetUrl, publicFileExists } from "@/lib/assets";
 import { Button, Container, Arrow } from "./ui";
 
 // Each channel is a link in the chain. Fader positions are decorative only.
@@ -12,14 +11,7 @@ const channels = [
   { k: "Automation", v: "Remove repetitive work", level: 76 },
 ];
 
-// Tight crop of mixing-console faders, converted to a teal/yellow duotone.
-// SOURCE: "Close up photo of audio mixer" by Adi Goldstein (@adigold1), Unsplash License
-// https://unsplash.com/photos/close-up-photo-of-audio-mixer-sdtnZ4LgbWk
-// Swap for a real personal photo any time by replacing public/hero-faders.webp (1200x320).
-const HERO_IMAGE = "/hero-faders.webp";
-
 export function Hero() {
-  const hasImage = publicFileExists(HERO_IMAGE);
   return (
     <section className="grid-bg relative overflow-hidden bg-teal pb-20 pt-14 text-paper sm:pb-28 sm:pt-20">
       <Container className="grid items-center gap-14 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
@@ -60,17 +52,6 @@ export function Hero() {
           aria-label="How the pieces of a growth system fit together"
           className="border-2 border-paper bg-teal-2 shadow-[7px_7px_0_0_var(--color-signal)]"
         >
-          {hasImage && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={assetUrl(HERO_IMAGE)}
-              alt="Close-up of the faders on a mixing console"
-              width={1200}
-              height={320}
-              decoding="async"
-              className="block h-24 w-full border-b-2 border-paper object-cover sm:h-28"
-            />
-          )}
           <div className="p-6 sm:p-7">
             <p className="eyebrow !text-paper/75">One system, not five vendors</p>
             <ol className="mt-6">

@@ -87,6 +87,7 @@ export default function WordPressSeoPage() {
           { name: "WordPress SEO & Tracking", path: "/wordpress-seo" },
         ]}
         eyebrow="WordPress SEO & Tracking"
+        art="search-engines"
         title="A WordPress site that search engines can read and you can measure."
         intro="Many WordPress sites look fine but have indexing problems, slow pages or tracking that doesn't record real enquiries. I review the site, fix what matters and make sure you can see the results."
       />

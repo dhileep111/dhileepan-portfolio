@@ -2,6 +2,7 @@ import Link from "next/link";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { JsonLd } from "./JsonLd";
 import { Container } from "./ui";
+import { Illustration, type IllustrationName } from "./Illustration";
 
 export type Crumb = { name: string; path: string };
 
@@ -10,11 +11,13 @@ export function PageHeader({
   eyebrow,
   title,
   intro,
+  art,
 }: {
   crumbs: Crumb[];
   eyebrow: string;
   title: string;
   intro?: string;
+  art?: IllustrationName;
 }) {
   const all = [{ name: "Home", path: "/" }, ...crumbs];
   return (
@@ -39,9 +42,14 @@ export function PageHeader({
             ))}
           </ol>
         </nav>
-        <p className="eyebrow mt-12">{eyebrow}</p>
-        <h1 className="display mt-5 max-w-4xl">{title}</h1>
-        {intro && <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">{intro}</p>}
+        <div className={art ? "mt-12 grid items-center gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-16" : "mt-12"}>
+          <div>
+            <p className="eyebrow">{eyebrow}</p>
+            <h1 className="display mt-5 max-w-4xl">{title}</h1>
+            {intro && <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">{intro}</p>}
+          </div>
+          {art && <Illustration name={art} priority className="mx-auto w-full max-w-md lg:max-w-none" />}
+        </div>
       </Container>
     </div>
   );

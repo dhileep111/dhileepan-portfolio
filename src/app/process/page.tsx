@@ -17,6 +17,7 @@ export default function ProcessPage() {
       <PageHeader
         crumbs={[{ name: "Process", path: "/process" }]}
         eyebrow="Process"
+        art="idea-to-plan"
         title="Simple, practical, hands-on."
         intro="Four steps, from first conversation to ongoing improvement. You work with me directly throughout."
       />

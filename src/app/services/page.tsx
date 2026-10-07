@@ -38,6 +38,7 @@ export default function ServicesPage() {
       <PageHeader
         crumbs={[{ name: "Services", path: "/services" }]}
         eyebrow="Services"
+        art="marketing-analysis"
         title="Six disciplines. One accountable person."
         intro={`Each service stands alone, but they work best together. I handle the strategy and the hands-on work, so there is no hand-off between teams. Working remotely from ${site.location.region}, India.`}
       />

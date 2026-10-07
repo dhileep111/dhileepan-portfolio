@@ -20,6 +20,7 @@ export default function ContactPage() {
       <PageHeader
         crumbs={[{ name: "Contact", path: "/contact" }]}
         eyebrow="Contact"
+        art="contact-us"
         title="Have a project in mind?"
         intro="Tell me what you're trying to build, improve or grow."
       />

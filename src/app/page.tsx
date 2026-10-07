@@ -7,6 +7,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { Tools } from "@/components/Tools";
 import { CtaBlock } from "@/components/CtaBlock";
+import { Illustration } from "@/components/Illustration";
 import { AuditOffer } from "@/components/AuditOffer";
 import { FaqSection } from "@/components/FaqSection";
 import { Reveal } from "@/components/Reveal";
@@ -28,6 +29,28 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+
+      <Section>
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+          <div>
+            <p className="eyebrow">Analytics &amp; tracking</p>
+            <h2 className="h2 mt-5">See which ads, pages and keywords bring real enquiries.</h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+              I set up GA4, Google Tag Manager and Search Console so decisions are based on data, not guesses.
+            </p>
+            <p className="mt-8">
+              <Link
+                prefetch={false}
+                href="/services#analytics-tracking"
+                className="inline-flex items-center gap-2 font-display text-sm font-bold underline underline-offset-4 hover:text-accent"
+              >
+                How tracking works <Arrow />
+              </Link>
+            </p>
+          </div>
+          <Illustration name="analytics-setup" className="mx-auto w-full max-w-lg lg:max-w-none" />
+        </div>
+      </Section>
 
       <Section tone="alt">
         <SectionHeading
