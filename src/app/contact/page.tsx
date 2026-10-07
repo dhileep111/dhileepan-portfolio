@@ -29,11 +29,11 @@ export default function ContactPage() {
           {hasDirect && (
             <aside aria-label="Direct contact">
               <p className="eyebrow">Or reach me directly</p>
-              <ul className="mt-6 divide-y divide-line border-y border-line">
+              <ul className="mt-6 divide-y-2 divide-ink border-y-2 border-ink">
                 {email && (
                   <li className="py-4">
                     <p className="text-xs text-muted">Email</p>
-                    <a href={`mailto:${email}`} className="text-lg font-medium hover:text-accent">
+                    <a href={`mailto:${email}`} className="text-lg font-semibold underline-offset-4 hover:text-accent hover:underline">
                       {email}
                     </a>
                   </li>
@@ -41,7 +41,7 @@ export default function ContactPage() {
                 {wa && (
                   <li className="py-4">
                     <p className="text-xs text-muted">WhatsApp</p>
-                    <a href={wa} target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:text-accent">
+                    <a href={wa} target="_blank" rel="noopener noreferrer" className="text-lg font-semibold underline-offset-4 hover:text-accent hover:underline">
                       Message on WhatsApp
                     </a>
                   </li>
@@ -49,7 +49,7 @@ export default function ContactPage() {
                 {linkedin && (
                   <li className="py-4">
                     <p className="text-xs text-muted">LinkedIn</p>
-                    <a href={linkedin} target="_blank" rel="noopener noreferrer me" className="text-lg font-medium hover:text-accent">
+                    <a href={linkedin} target="_blank" rel="noopener noreferrer me" className="text-lg font-semibold underline-offset-4 hover:text-accent hover:underline">
                       Connect on LinkedIn
                     </a>
                   </li>

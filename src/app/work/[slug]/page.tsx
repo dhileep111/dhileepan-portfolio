@@ -44,7 +44,7 @@ function BulletList({ items }: { items: string[] }) {
     <ul className="space-y-3">
       {items.map((it) => (
         <li key={it} className="flex gap-4">
-          <span aria-hidden="true" className="mt-3 h-px w-4 shrink-0 bg-accent" />
+          <span aria-hidden="true" className="mt-3 h-0.5 w-4 shrink-0 bg-ink" />
           {it}
         </li>
       ))}
@@ -139,7 +139,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                     width={e.width}
                     height={e.height}
                     sizes="(min-width: 1024px) 42rem, 100vw"
-                    className="w-full rounded-lg border border-line"
+                    className="w-full border-2 border-ink"
                   />
                   <figcaption className="mt-3 text-sm text-muted">{e.caption}</figcaption>
                 </figure>
@@ -155,7 +155,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
           <Link
           prefetch={false}
             href={`/work/${next.slug}`}
-            className="mt-3 inline-flex items-center gap-3 text-2xl font-medium tracking-tight hover:text-accent"
+            className="mt-3 inline-flex items-center gap-3 font-display text-2xl font-bold tracking-tight underline-offset-4 hover:text-accent hover:underline"
           >
             {next.name} <Arrow />
           </Link>

@@ -1,17 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #f6f5f0;
-  --color-paper-2: #ecebe4;
-  --color-ink: #0e0f0c;
-  --color-ink-2: #1a1c18;
-  --color-muted: #55574f;
-  --color-line: #d8d6cc;
-  --color-accent: #c2410c;
-  --color-accent-soft: #f4c9b6;
+  /* Signal Chain palette: cool paper, deep teal, one loud signal yellow.
+     Yellow is a FILL only (never text on light). Teal-ish --accent is for text. */
+  --color-paper: #f3f6f5;
+  --color-paper-2: #e3e9e8;
+  --color-ink: #08181c;
+  --color-teal: #0d3b40;
+  --color-teal-2: #082a2e;
+  --color-muted: #44575c;
+  --color-line: #b9c6c6;
+  --color-accent: #0b6068;
+  --color-signal: #ffd21f;
+  --color-forest: #1f6b45;
+  --color-danger: #a3222b;
 
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-source), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-hard: 4px 4px 0 0 var(--color-ink);
+  --shadow-hard-lg: 7px 7px 0 0 var(--color-ink);
+  --shadow-hard-light: 4px 4px 0 0 var(--color-paper);
 
   --breakpoint-3xl: 112rem;
 }
@@ -40,25 +50,50 @@ body {
   border-radius: 2px;
 }
 
-/* Type scale */
+/* Type scale: Archivo (wide, heavy) for display, Source Sans 3 for reading */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
 .display {
-  font-size: clamp(2.6rem, 7.2vw, 6rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 6.4vw, 5.25rem);
   line-height: 0.98;
-  letter-spacing: -0.045em;
-  font-weight: 500;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+  font-stretch: 112%;
 }
 .h2 {
-  font-size: clamp(2rem, 4.4vw, 3.5rem);
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  font-stretch: 108%;
 }
 .eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
   color: var(--color-muted);
+}
+.eyebrow::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--color-signal);
+  border: 1.5px solid currentColor;
+}
+
+/* Blueprint grid used behind dark sections */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(243 246 245 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(243 246 245 / 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 /* Subtle reveal; disabled for reduced motion and when JS is unavailable */

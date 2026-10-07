@@ -16,12 +16,12 @@ export function ProjectCard({
 }) {
   const shot = project.sites?.find((s) => publicFileExists(s.image));
   return (
-    <article className="group relative flex h-full flex-col rounded-2xl border border-line bg-paper p-7 transition-colors duration-300 hover:border-ink sm:p-8">
+    <article className="group relative flex h-full flex-col border-2 border-ink bg-paper p-7 transition-[transform,box-shadow] duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_var(--color-ink)] sm:p-8">
       <div className="flex items-baseline justify-between">
-        <p className="font-mono text-xs text-muted">{String(index + 1).padStart(2, "0")}</p>
+        <p className="font-display font-semibold text-xs text-muted">{String(index + 1).padStart(2, "0")}</p>
         <p className="eyebrow">{project.industry}</p>
       </div>
-      <H className="mt-8 text-2xl font-medium tracking-tight sm:text-3xl">{project.name}</H>
+      <H className="mt-8 text-2xl font-bold tracking-tight sm:text-3xl">{project.name}</H>
       <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{project.description}</p>
 
       <ul aria-label="Services" className="mt-6 flex flex-wrap gap-2">

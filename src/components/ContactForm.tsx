@@ -29,7 +29,7 @@ type Status =
   | { state: "error"; message: string };
 
 const field =
-  "mt-2 block w-full rounded-lg border border-line bg-paper px-4 py-3.5 text-base text-ink placeholder:text-muted/60 focus:border-ink focus:outline-none focus:ring-2 focus:ring-accent/30";
+  "mt-2 block w-full border-2 border-ink bg-paper px-4 py-3.5 text-base text-ink placeholder:text-muted/70 focus:shadow-[4px_4px_0_0_var(--color-signal)]";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>({ state: "idle" });
@@ -97,7 +97,7 @@ export function ContactForm() {
   return (
     <form onSubmit={onSubmit} className="relative space-y-6">
       {process.env.NODE_ENV !== "production" && !site.formEndpoint && (
-        <p className="rounded-lg border border-accent/40 bg-accent-soft/40 px-4 py-3 text-sm">
+        <p className="rounded-lg border-2 border-ink bg-signal/40 px-4 py-3 text-sm">
           <strong>Dev notice (hidden in production):</strong> set NEXT_PUBLIC_FORM_ENDPOINT to connect
           this form.{" "}
           {site.contact.email
@@ -106,23 +106,23 @@ export function ContactForm() {
         </p>
       )}
       <div className="grid gap-6 sm:grid-cols-2">
-        <label className="block text-sm font-medium">
+        <label className="block font-display text-sm font-bold">
           Name
           <input name="name" required autoComplete="name" className={field} />
         </label>
-        <label className="block text-sm font-medium">
+        <label className="block font-display text-sm font-bold">
           Email
           <input name="email" type="email" required autoComplete="email" className={field} />
         </label>
-        <label className="block text-sm font-medium">
+        <label className="block font-display text-sm font-bold">
           Business / Company
           <input name="business" autoComplete="organization" className={field} />
         </label>
-        <label className="block text-sm font-medium">
+        <label className="block font-display text-sm font-bold">
           Website
           <input name="website" type="url" inputMode="url" placeholder="https://" autoComplete="url" className={field} />
         </label>
-        <label className="block text-sm font-medium">
+        <label className="block font-display text-sm font-bold">
           What do you need help with?
           <select name="need" required value={need} onChange={(e) => setNeed(e.target.value)} className={field}>
             <option value="" disabled>
@@ -133,7 +133,7 @@ export function ContactForm() {
             ))}
           </select>
         </label>
-        <label className="block text-sm font-medium">
+        <label className="block font-display text-sm font-bold">
           Budget <span className="font-normal text-muted">(optional)</span>
           <select name="budget" defaultValue="" className={field}>
             <option value="">Select a range</option>
@@ -143,7 +143,7 @@ export function ContactForm() {
           </select>
         </label>
       </div>
-      <label className="block text-sm font-medium">
+      <label className="block font-display text-sm font-bold">
         Message
         <textarea
           name="message"
@@ -166,7 +166,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={!ready || status.state === "sending"}
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-7 text-[0.95rem] font-medium text-paper transition-colors hover:bg-accent disabled:opacity-60"
+          className="inline-flex min-h-12 items-center justify-center border-2 border-ink bg-signal px-7 font-display text-[0.95rem] font-bold text-ink shadow-[4px_4px_0_0_var(--color-ink)] transition-[transform,box-shadow] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_var(--color-ink)] disabled:opacity-60"
         >
           {status.state === "sending" ? "Sending…" : "Start a Conversation"}
         </button>
@@ -177,7 +177,7 @@ export function ContactForm() {
           {status.state === "sent" && status.via === "mailto" && (
             <span className="text-ink">Your email app should open with the message ready to send.</span>
           )}
-          {status.state === "error" && <span className="text-accent">{status.message}</span>}
+          {status.state === "error" && <span className="font-semibold text-danger">{status.message}</span>}
         </p>
       </div>
     </form>

@@ -6,7 +6,7 @@ export function Tools() {
       {toolGroups.map((g) => (
         <div key={g.group}>
           <h3 className="eyebrow">{g.group}</h3>
-          <ul className="mt-5 divide-y divide-line border-y border-line">
+          <ul className="mt-5 divide-y-2 divide-ink border-y-2 border-ink">
             {g.tools.map((t) => (
               <li key={t} className="py-3.5 text-lg tracking-tight">
                 {t}

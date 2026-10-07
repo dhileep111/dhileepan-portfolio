@@ -25,7 +25,7 @@ export default function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-24">
           <div>
             <p className="eyebrow">Background</p>
-            <dl className="mt-6 divide-y divide-line border-y border-line text-[0.95rem]">
+            <dl className="mt-6 divide-y-2 divide-ink border-y-2 border-ink text-[0.95rem]">
               {[
                 ["Education", "Engineering"],
                 ["Earlier work", "Sound technician / sound engineer"],
@@ -64,15 +64,15 @@ export default function AboutPage() {
       <Section>
         <p className="eyebrow">Both sides of the work</p>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-line p-8">
-            <h2 className="text-2xl font-medium tracking-tight">Technical implementation</h2>
+          <div className="border-2 border-ink p-8">
+            <h2 className="text-2xl font-bold tracking-tight">Technical implementation</h2>
             <p className="mt-3 leading-relaxed text-muted">
               Tag setup, tracking, site structure, WordPress, scripts and automation: the setup work
               that campaigns and reporting depend on.
             </p>
           </div>
-          <div className="rounded-2xl border border-line p-8">
-            <h2 className="text-2xl font-medium tracking-tight">Business marketing</h2>
+          <div className="border-2 border-ink p-8">
+            <h2 className="text-2xl font-bold tracking-tight">Business marketing</h2>
             <p className="mt-3 leading-relaxed text-muted">
               Audience, offer, campaigns and conversion. Deciding what to measure and what to improve
               based on what matters to the business.

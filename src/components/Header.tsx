@@ -27,11 +27,11 @@ export function Header() {
 
   return (
     <>
-    <header className="sticky top-0 z-50 border-b border-line/70 bg-paper/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b-2 border-ink bg-paper/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
-        <Link prefetch={false} href="/" className="text-[1.05rem] font-semibold tracking-tight" aria-label={`${site.name} — home`}>
+        <Link prefetch={false} href="/" className="flex items-center gap-2 font-display text-[1.1rem] font-extrabold tracking-tight" aria-label={`${site.name} — home`}>
           {site.name}
-          <span className="text-accent">.</span>
+          <span aria-hidden="true" className="inline-block size-2.5 border-[1.5px] border-ink bg-signal" />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
@@ -41,8 +41,8 @@ export function Header() {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className={`text-sm transition-colors hover:text-ink ${
-                isActive(item.href) ? "text-ink" : "text-muted"
+              className={`font-display text-sm font-semibold underline-offset-[10px] decoration-2 transition-colors hover:text-ink hover:underline hover:decoration-signal ${
+                isActive(item.href) ? "text-ink underline decoration-signal" : "text-muted"
               }`}
             >
               {item.label}
@@ -51,7 +51,7 @@ export function Header() {
           <Link
           prefetch={false}
             href="/contact"
-            className="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-accent"
+            className="border-2 border-ink bg-signal px-5 py-2 font-display text-sm font-bold text-ink shadow-[3px_3px_0_0_var(--color-ink)] transition-[transform,box-shadow] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_0_var(--color-ink)]"
           >
             Start a Project
           </Link>
@@ -86,16 +86,16 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className="flex items-baseline gap-4 border-b border-line py-5 text-3xl font-medium tracking-tight"
+                  className="flex items-baseline gap-4 border-b-2 border-ink py-5 font-display text-3xl font-extrabold tracking-tight"
                 >
-                  <span className="font-mono text-xs text-muted">0{i + 1}</span>
+                  <span className="font-display text-xs font-bold text-muted">0{i + 1}</span>
                   {item.label}
                 </Link>
               ))}
               <Link
           prefetch={false}
                 href="/contact"
-                className="mt-8 flex min-h-14 items-center justify-center rounded-full bg-ink text-base font-medium text-paper"
+                className="mt-8 flex min-h-14 items-center justify-center border-2 border-ink bg-signal font-display text-base font-bold text-ink shadow-[4px_4px_0_0_var(--color-ink)]"
               >
                 Start a Project
               </Link>

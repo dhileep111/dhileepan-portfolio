@@ -4,7 +4,7 @@ import { JsonLd } from "./JsonLd";
 
 export function FaqSection({ items = faqs, schema = false }: { items?: Faq[]; schema?: boolean }) {
   return (
-    <div className="divide-y divide-line border-y border-line">
+    <div className="divide-y-2 divide-ink border-y-2 border-ink">
       {schema && (
         <JsonLd
           data={{
@@ -20,7 +20,7 @@ export function FaqSection({ items = faqs, schema = false }: { items?: Faq[]; sc
       )}
       {items.map((f) => (
         <details key={f.q} className="group py-5">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-medium tracking-tight [&::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-lg font-bold tracking-tight [&::-webkit-details-marker]:hidden">
             {f.q}
             <span
               aria-hidden="true"

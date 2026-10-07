@@ -95,12 +95,12 @@ export default function WordPressSeoPage() {
         <SectionHeading eyebrow="What I check and fix" title="Four areas, handled together." />
         <div className="mt-14 grid gap-4 sm:grid-cols-2">
           {groups.map((g) => (
-            <div key={g.title} className="rounded-2xl border border-line bg-paper p-7 sm:p-8">
-              <h3 className="text-2xl font-medium tracking-tight">{g.title}</h3>
+            <div key={g.title} className="border-2 border-ink bg-paper p-7 sm:p-8">
+              <h3 className="text-2xl font-bold tracking-tight">{g.title}</h3>
               <ul className="mt-5 space-y-2.5 border-t border-line pt-5 text-[0.95rem]">
                 {g.items.map((it) => (
                   <li key={it} className="flex items-center gap-3">
-                    <span aria-hidden="true" className="h-px w-3 bg-accent" />
+                    <span aria-hidden="true" className="h-0.5 w-3 bg-ink" />
                     {it}
                   </li>
                 ))}
