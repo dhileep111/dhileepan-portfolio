@@ -34,7 +34,7 @@ export function Header() {
           <span aria-hidden="true" className="inline-block size-2.5 border-[1.5px] border-ink bg-signal" />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-5 md:flex lg:gap-8">
           {nav.slice(0, -1).map((item) => (
             <Link
           prefetch={false}

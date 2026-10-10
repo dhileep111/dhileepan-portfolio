@@ -118,3 +118,25 @@ h1, h2, h3, h4 {
     transition: none;
   }
 }
+
+/* Blog post body (rendered Markdown). Same type system as the rest of the site. */
+.prose-post { font-size: 1.125rem; line-height: 1.75; color: var(--color-ink); }
+.prose-post > * + * { margin-top: 1.25rem; }
+.prose-post h2 { font-family: var(--font-display); font-weight: 800; font-stretch: 108%; font-size: 1.75rem; line-height: 1.15; letter-spacing: -0.02em; margin-top: 2.75rem; }
+.prose-post h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; line-height: 1.25; margin-top: 2rem; }
+.prose-post a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+.prose-post a:hover { color: var(--color-ink); }
+.prose-post ul, .prose-post ol { padding-left: 1.4rem; }
+.prose-post ul { list-style: square; }
+.prose-post ol { list-style: decimal; }
+.prose-post li + li { margin-top: 0.4rem; }
+.prose-post li::marker { color: var(--color-accent); }
+.prose-post blockquote { border-left: 6px solid var(--color-signal); background: var(--color-paper-2); padding: 1rem 1.25rem; font-weight: 600; }
+.prose-post code { font-size: 0.9em; background: var(--color-paper-2); border: 1px solid var(--color-line); padding: 0.1em 0.35em; }
+.prose-post pre { overflow-x: auto; background: var(--color-teal-2); color: var(--color-paper); padding: 1.1rem 1.25rem; border: 2px solid var(--color-ink); font-size: 0.9rem; line-height: 1.6; }
+.prose-post pre code { background: none; border: 0; padding: 0; }
+.prose-post img { border: 2px solid var(--color-ink); max-width: 100%; height: auto; }
+.prose-post hr { border: 0; border-top: 2px solid var(--color-ink); margin: 2.5rem 0; }
+.prose-post table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.prose-post th, .prose-post td { border: 2px solid var(--color-ink); padding: 0.5rem 0.75rem; text-align: left; }
+.prose-post th { background: var(--color-paper-2); font-family: var(--font-display); }
