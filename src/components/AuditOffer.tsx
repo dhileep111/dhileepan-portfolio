@@ -18,9 +18,12 @@ export function AuditOffer() {
             Send me your website. I&rsquo;ll review it and send back a short written summary of what I
             found and what I&rsquo;d fix first. No obligation.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Button href="/contact#audit" variant="dark">
               Request a free review <Arrow />
+            </Button>
+            <Button href="/tools/site-check" variant="secondary">
+              Or run an instant check
             </Button>
           </div>
         </div>

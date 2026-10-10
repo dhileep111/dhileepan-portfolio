@@ -37,9 +37,17 @@ export function ContactForm() {
   // personal details into the URL.
   const [ready, setReady] = useState(false);
   const [need, setNeed] = useState("");
+  const [website, setWebsite] = useState("");
   useEffect(() => {
     setReady(true);
     if (window.location.hash === "#audit") setNeed("Free site & tracking review");
+    try {
+      // Prefill the address the visitor just ran through the site checker.
+      const checked = sessionStorage.getItem("siteCheckUrl");
+      if (checked) setWebsite(checked);
+    } catch {
+      /* storage unavailable */
+    }
   }, []);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -120,7 +128,16 @@ export function ContactForm() {
         </label>
         <label className="block font-display text-sm font-bold">
           Website
-          <input name="website" type="url" inputMode="url" placeholder="https://" autoComplete="url" className={field} />
+          <input
+            name="website"
+            type="url"
+            inputMode="url"
+            placeholder="https://"
+            autoComplete="url"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            className={field}
+          />
         </label>
         <label className="block font-display text-sm font-bold">
           What do you need help with?

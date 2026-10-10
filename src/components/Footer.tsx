@@ -32,6 +32,11 @@ export function Footer() {
               </li>
             ))}
             <li>
+              <Link prefetch={false} href="/tools/site-check" className={linkCls}>
+                Free site check
+              </Link>
+            </li>
+            <li>
               <Link prefetch={false} href="/wordpress-seo" className={linkCls}>
                 WordPress SEO &amp; tracking
               </Link>
