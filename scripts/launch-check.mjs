@@ -5,11 +5,13 @@ import nextEnv from "@next/env";
 
 nextEnv.loadEnvConfig(process.cwd());
 
-const url = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+// Same order as src/content/site.ts: explicit URL, then Vercel's stable production domain.
+const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? "";
+const url = process.env.NEXT_PUBLIC_SITE_URL || (vercelHost ? `https://${vercelHost}` : "");
 const errors = [];
 const warnings = [];
 
-if (!url) errors.push("NEXT_PUBLIC_SITE_URL is not set (e.g. https://yourdomain.com).");
+if (!url) errors.push("No site URL: set NEXT_PUBLIC_SITE_URL (e.g. https://yourdomain.com), or build on Vercel.");
 else if (!/^https:\/\//.test(url) || /localhost|127\.0\.0\.1|example\.com/.test(url))
   errors.push(`NEXT_PUBLIC_SITE_URL must be your real https URL, got "${url}".`);
 

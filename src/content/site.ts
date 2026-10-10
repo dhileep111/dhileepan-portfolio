@@ -2,16 +2,27 @@
  * Central site configuration. Edit this file to update identity and contact
  * details. Any contact value left as an empty string is simply not shown.
  */
+/**
+ * Public site URL, in order of preference:
+ *  1. NEXT_PUBLIC_SITE_URL: set explicitly once you pick a domain.
+ *  2. Vercel's stable production domain (VERCEL_PROJECT_PRODUCTION_URL). Never VERCEL_URL:
+ *     that changes on every deployment and would break canonicals and the sitemap.
+ *  3. localhost, for `next dev` only (production builds are blocked by launch-check.mjs).
+ */
+function resolveSiteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
+  if (explicit) return explicit;
+  const vercel =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL;
+  if (vercel) return `https://${vercel}`;
+  return "http://localhost:3000";
+}
+
 export const site = {
   name: "Dhileepan",
   positioning: "Digital Growth & AI Systems",
   jobTitle: "Independent digital growth & AI systems professional",
-  /**
-   * Set NEXT_PUBLIC_SITE_URL (e.g. https://yourdomain.com). The localhost
-   * fallback exists for `next dev` only; production builds are blocked by
-   * scripts/launch-check.mjs if the variable is missing.
-   */
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
+  url: resolveSiteUrl().replace(/\/$/, ""),
   tagline: "Digital growth systems built for real businesses.",
   description:
     "I help businesses grow through SEO, paid advertising, analytics and AI-powered marketing systems. Independent, based in Tamil Nadu, India, working with businesses remotely.",
