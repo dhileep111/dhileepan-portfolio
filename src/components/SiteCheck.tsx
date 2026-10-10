@@ -141,7 +141,7 @@ function Results({ result }: { result: SiteCheckResult }) {
     {
       title: "Phone-friendliness",
       status: result.mobile.status,
-      big: statusMeta[result.mobile.status].label,
+      big: { pass: "Good", warn: "Needs work", fail: "Problems found" }[result.mobile.status],
       text: result.mobile.detail,
     },
     {

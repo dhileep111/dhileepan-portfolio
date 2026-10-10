@@ -165,7 +165,7 @@ const CHECKS: { id: string; label: string; ok: string; bad: string }[] = [
     id: "link-text",
     label: "Clear link wording",
     ok: "Links use descriptive wording.",
-    bad: "Some links say things like \"click here\", which tells Google and visitors nothing.",
+    bad: "Some links just say \"click here\", \"read more\" or \"learn more\", which tells Google and visitors nothing about where they lead.",
   },
   {
     id: "robots-txt",
