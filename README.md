@@ -25,8 +25,13 @@ Do not use `DEPLOY_URL` / `DEPLOY_PRIME_URL` for canonicals or the sitemap; they
 
 - Repo: `dhileep111/dhileepan-portfolio`, production branch `main`. Settings live in `netlify.toml`
   (build command, Node version and the `@netlify/plugin-nextjs` runtime that powers `/api/check`).
-- Environment variables to set in Netlify: `PAGESPEED_API_KEY`, and (for the real rate limit)
-  `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
+- Environment variables to set in Netlify: `PAGESPEED_API_KEY`, `UPSTASH_REDIS_REST_URL` and
+  `UPSTASH_REDIS_REST_TOKEN`. Mark the key and token as secret.
+- Site checker (`/tools/site-check`): a PageSpeed run takes 10–60 s, longer than a normal Netlify function
+  may run. `POST /api/check` therefore starts `netlify/functions/check-background.mts` (a background
+  function, up to 15 min), the result is stored in Upstash, and the page polls `GET /api/check?id=…`.
+  The same Upstash database holds the 5-checks-per-hour-per-visitor limit and a 1-hour per-URL result cache.
+  Without Upstash (local dev) the check runs inline, which only suits fast sites.
 - Custom domain later: Netlify → Domain management → Add a domain and follow the DNS steps, then set
   `NEXT_PUBLIC_SITE_URL=https://yourdomain.com` and redeploy.
 - After a domain change, add the new address as a property in Google Search Console and resubmit `sitemap.xml`.

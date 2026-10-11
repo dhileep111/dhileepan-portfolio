@@ -51,8 +51,28 @@ export function SiteCheck() {
     abortRef.current?.abort();
     const ctrl = new AbortController();
     abortRef.current = ctrl;
-    const timer = setTimeout(() => ctrl.abort(), 65_000);
+    const overall = setTimeout(() => ctrl.abort(), 180_000);
     setState({ phase: "loading", url });
+
+    type Reply = { status?: string; id?: string; result?: SiteCheckResult; error?: string };
+    // The server may answer with a non-JSON error page; never let that surface as a raw error.
+    const read = async (res: Response): Promise<Reply> => {
+      try {
+        return (await res.json()) as Reply;
+      } catch {
+        return { error: `The checker had a problem (error ${res.status}). Please try again in a moment.` };
+      }
+    };
+    const fail = (message: string) => setState({ phase: "error", message });
+    const done = (result: SiteCheckResult) => {
+      try {
+        sessionStorage.setItem("siteCheckUrl", result.url);
+      } catch {
+        /* storage unavailable: the contact form just won't be prefilled */
+      }
+      setState({ phase: "done", result });
+    };
+
     try {
       const res = await fetch("/api/check", {
         method: "POST",
@@ -60,21 +80,26 @@ export function SiteCheck() {
         body: JSON.stringify({ url }),
         signal: ctrl.signal,
       });
-      const data = (await res.json()) as { result?: SiteCheckResult; error?: string };
-      if (!res.ok || !data.result) {
-        setState({ phase: "error", message: data.error ?? "Something went wrong. Please try again." });
-        return;
+      let data = await read(res);
+      if (!res.ok || data.error) return fail(data.error ?? "Something went wrong. Please try again.");
+      if (data.status === "done" && data.result) return done(data.result);
+      if (data.status !== "pending" || !data.id) return fail("Something went wrong. Please try again.");
+
+      // The test runs in the background (10-60 seconds); poll until it finishes.
+      const id = data.id;
+      for (let i = 0; i < 70; i++) {
+        await new Promise((r) => setTimeout(r, 2500));
+        const poll = await fetch(`/api/check?id=${encodeURIComponent(id)}`, { signal: ctrl.signal, cache: "no-store" });
+        data = await read(poll);
+        if (!poll.ok || data.error) return fail(data.error ?? "Something went wrong. Please try again.");
+        if (data.status === "done" && data.result) return done(data.result);
+        if (data.status === "error") return fail(data.error ?? "The check failed. Please try again.");
       }
-      try {
-        sessionStorage.setItem("siteCheckUrl", data.result.url);
-      } catch {
-        /* storage unavailable: the contact form just won't be prefilled */
-      }
-      setState({ phase: "done", result: data.result });
+      fail("The check is taking longer than expected. Please try again in a moment.");
     } catch {
-      setState({ phase: "error", message: "The check took too long or the connection dropped. Please try again." });
+      fail("The connection dropped before the check finished. Please try again.");
     } finally {
-      clearTimeout(timer);
+      clearTimeout(overall);
     }
   }
 
@@ -113,7 +138,7 @@ export function SiteCheck() {
       <div aria-live="polite" className="mt-6">
         {state.phase === "loading" && (
           <p className="border-2 border-ink bg-paper p-5 text-base">
-            Testing <strong>{host(state.url)}</strong> on a simulated phone. This usually takes 20–40 seconds.
+            Testing <strong>{host(state.url)}</strong> on a simulated phone. This usually takes 20–60 seconds.
           </p>
         )}
         {state.phase === "error" && (
