@@ -44,7 +44,9 @@ export async function POST(request: Request) {
     return json({ result: hit.data, cached: true });
   }
 
+  // Netlify puts the visitor's address in x-nf-client-connection-ip; the others are fallbacks.
   const ip =
+    request.headers.get("x-nf-client-connection-ip") ||
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     request.headers.get("x-real-ip") ||
     "unknown";

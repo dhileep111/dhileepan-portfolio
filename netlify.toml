@@ -1,0 +1,11 @@
+# Netlify build settings. The Next.js runtime plugin makes API routes (/api/check),
+# server rendering and image optimisation work on Netlify.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

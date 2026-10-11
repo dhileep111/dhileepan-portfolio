@@ -5,16 +5,16 @@
 /**
  * Public site URL, in order of preference:
  *  1. NEXT_PUBLIC_SITE_URL: set explicitly once you pick a domain.
- *  2. Vercel's stable production domain (VERCEL_PROJECT_PRODUCTION_URL). Never VERCEL_URL:
- *     that changes on every deployment and would break canonicals and the sitemap.
+ *  2. Netlify's main site address (URL, set automatically during Netlify builds). This is the
+ *     site's primary domain in every context, so canonicals always point at production.
+ *     Never DEPLOY_URL / DEPLOY_PRIME_URL: those are per-deploy addresses.
  *  3. localhost, for `next dev` only (production builds are blocked by launch-check.mjs).
  */
 function resolveSiteUrl() {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit) return explicit;
-  const vercel =
-    process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL;
-  if (vercel) return `https://${vercel}`;
+  // `URL` is a generic name, so only trust it when we are really on Netlify.
+  if (process.env.NETLIFY === "true" && process.env.URL) return process.env.URL;
   return "http://localhost:3000";
 }
 

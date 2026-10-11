@@ -5,13 +5,13 @@ import nextEnv from "@next/env";
 
 nextEnv.loadEnvConfig(process.cwd());
 
-// Same order as src/content/site.ts: explicit URL, then Vercel's stable production domain.
-const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? "";
-const url = process.env.NEXT_PUBLIC_SITE_URL || (vercelHost ? `https://${vercelHost}` : "");
+// Same order as src/content/site.ts: explicit URL, then Netlify's main site address.
+const netlifyUrl = process.env.NETLIFY === "true" ? (process.env.URL ?? "") : "";
+const url = process.env.NEXT_PUBLIC_SITE_URL || netlifyUrl;
 const errors = [];
 const warnings = [];
 
-if (!url) errors.push("No site URL: set NEXT_PUBLIC_SITE_URL (e.g. https://yourdomain.com), or build on Vercel.");
+if (!url) errors.push("No site URL: set NEXT_PUBLIC_SITE_URL (e.g. https://yourdomain.com), or build on Netlify.");
 else if (!/^https:\/\//.test(url) || /localhost|127\.0\.0\.1|example\.com/.test(url))
   errors.push(`NEXT_PUBLIC_SITE_URL must be your real https URL, got "${url}".`);
 

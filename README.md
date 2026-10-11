@@ -1,6 +1,6 @@
 # Dhileepan — Digital Growth & AI Systems
 
-Next.js (App Router) · TypeScript · Tailwind CSS v4. Hosted on Vercel; every push to `main` deploys automatically.
+Next.js (App Router) · TypeScript · Tailwind CSS v4. Hosted on Netlify; every push to `main` deploys automatically.
 
 ```bash
 npm install
@@ -15,16 +15,19 @@ localhost/example URL, and **warns** about empty contact details and a missing f
 
 Resolved in `src/content/site.ts`, in this order:
 
-1. `NEXT_PUBLIC_SITE_URL` — set this in Vercel (Settings → Environment Variables) once you pick a custom domain.
-2. `VERCEL_PROJECT_PRODUCTION_URL` — Vercel sets it automatically (the project's stable `*.vercel.app` domain).
+1. `NEXT_PUBLIC_SITE_URL` — set this in Netlify (Site configuration → Environment variables) once you pick a custom domain.
+2. `URL` — Netlify sets it automatically during builds (the site's main address, e.g. `*.netlify.app`). Only used when `NETLIFY=true`.
 3. `http://localhost:3000` — dev only.
 
-Do not use `VERCEL_URL` for canonicals or the sitemap; it changes on every deployment.
+Do not use `DEPLOY_URL` / `DEPLOY_PRIME_URL` for canonicals or the sitemap; they are per-deploy addresses.
 
-## Hosting (Vercel)
+## Hosting (Netlify)
 
-- Project: `dhileep111/dhileepan-portfolio`, production branch `main`.
-- Custom domain later: Vercel → Project → Settings → Domains → add the domain and follow the DNS steps, then set
+- Repo: `dhileep111/dhileepan-portfolio`, production branch `main`. Settings live in `netlify.toml`
+  (build command, Node version and the `@netlify/plugin-nextjs` runtime that powers `/api/check`).
+- Environment variables to set in Netlify: `PAGESPEED_API_KEY`, and (for the real rate limit)
+  `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
+- Custom domain later: Netlify → Domain management → Add a domain and follow the DNS steps, then set
   `NEXT_PUBLIC_SITE_URL=https://yourdomain.com` and redeploy.
 - After a domain change, add the new address as a property in Google Search Console and resubmit `sitemap.xml`.
   The verification file in `public/` works on the new address too.
