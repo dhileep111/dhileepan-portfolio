@@ -138,7 +138,8 @@ export function SiteCheck() {
       <div aria-live="polite" className="mt-6">
         {state.phase === "loading" && (
           <p className="border-2 border-ink bg-paper p-5 text-base">
-            Testing <strong>{host(state.url)}</strong> on a simulated phone. This usually takes 20–60 seconds.
+            Testing <strong>{host(state.url)}</strong> on a simulated phone. Most sites take under a minute; heavier
+            sites can take up to two minutes. You can keep this page open.
           </p>
         )}
         {state.phase === "error" && (

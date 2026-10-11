@@ -18,7 +18,7 @@ export default function SiteCheckPage() {
         eyebrow="Free tool"
         art="analytics"
         title="How does your website look to a visitor on a phone?"
-        intro="Paste your address. In under a minute you'll see how fast it loads, whether it works on mobile and whether the search basics are in place, in plain language."
+        intro="Paste your address and see how fast it loads, whether it works on mobile and whether the search basics are in place, in plain language. Most sites take under a minute; heavier ones up to two."
       />
       <Section tone="alt" className="!pt-14">
         <div className="max-w-4xl">
